@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  ffmpeg:
+    build:
+      context: ./
+      args:
+        VERSION: 4.1-alpine  # ${VERSION}
+        # 4.1-vaapi     73mb
+        # 4.1-ubuntu    85mb
+        # 4.1-scratch   20mb
+        # 4.1-nvidia    640mb
+        # 4.1-centos    97mb
+        # 4.1-alpine    34mb
+    privileged: true
+    image   : ffmpeg:4.1-alpine
+    volumes :
+      - ./data/:/var/www/html/:rw
+    container_name: "ffmpeg"
+    ports:
+      - "9003:9000"
+    restart: always
+    cap_add:
+      - SYS_PTRACE
+    networks:
+      qvpcbr:
+        ipv4_address: 172.10.0.100
+
+networks:
+  #esnet:
+  qvpcbr:
+    ipam:
+      config:
+        - subnet: 172.10.0.0/16

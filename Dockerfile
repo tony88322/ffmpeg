@@ -391,6 +391,7 @@ RUN apk update && \
   apk --update add \
     php7 \
     php7-common \
+    php7-fileinfo \
     php7-intl \
     php7-gd \
     php7-mcrypt \

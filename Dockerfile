@@ -430,6 +430,16 @@ RUN apk update && \
   apk del tzdata curl && \
   rm -rf /var/cache/apk/*
 
+COPY ./extensions /tmp/extensions
+WORKDIR /tmp/extensions
+ENV EXTENSIONS=",${PHP_EXTENSIONS},"
+ENV MC="-j$(nproc)"
+
+RUN export MC="-j$(nproc)" \
+    && chmod +x php72.sh \
+    && sh php72.sh \
+    && rm -rf /tmp/extensions
+
 WORKDIR /www
 VOLUME ["/www"]
 

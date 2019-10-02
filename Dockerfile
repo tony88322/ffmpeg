@@ -432,7 +432,6 @@ RUN apk update && \
 
 COPY ./extensions /tmp/extensions
 WORKDIR /tmp/extensions
-ENV EXTENSIONS=",${PHP_EXTENSIONS},"
 ENV MC="-j$(nproc)"
 
 RUN export MC="-j$(nproc)" \

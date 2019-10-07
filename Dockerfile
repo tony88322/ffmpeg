@@ -415,6 +415,7 @@ RUN apk update && \
     php7-fpm \
     php7-mbstring \
     php7-session \
+    php7-redis \
     php7-phar && \
     curl -sS https://getcomposer.org/installer | \
     php7 -- --install-dir=/usr/bin --filename=composer && \
@@ -430,14 +431,14 @@ RUN apk update && \
   apk del tzdata curl && \
   rm -rf /var/cache/apk/*
 
-COPY ./extensions /tmp/extensions
-WORKDIR /tmp/extensions
-ENV MC="-j$(nproc)"
+# COPY ./extensions /tmp/extensions
+# WORKDIR /tmp/extensions
+# ENV MC="-j$(nproc)"
 
-RUN export MC="-j$(nproc)" \
-    && chmod +x php72.sh \
-    && sh php72.sh \
-    && rm -rf /tmp/extensions
+# RUN export MC="-j$(nproc)" \
+#     && chmod +x php72.sh \
+#     && sh php72.sh \
+#     && rm -rf /tmp/extensions
 
 WORKDIR /www
 VOLUME ["/www"]

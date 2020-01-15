@@ -50,29 +50,10 @@ ARG         LIBVIDSTAB_SHA256SUM="14d2a053e56edad4f397be0cb3ef8eb1ec3150404ce99a
 ARG         LIBASS_SHA256SUM="8fadf294bf701300d4605e6f1d92929304187fca4b8d8a47889315526adbafd7  0.13.7.tar.gz"
 ARG         FRIBIDI_SHA256SUM="3fc96fa9473bd31dcb5500bdf1aa78b337ba13eb8c301e7c28923fea982453a8  0.19.7.tar.gz"
 
+RUN     apk  add --no-cache --update autoconf automake binutils bzip2 cmake curl coreutils diffutils file g++ gcc gperf
+RUN     apk  add --no-cache --update libtool make python openssl-dev tar yasm zlib-dev expat-dev
+RUN     apk  add --no-cache --update bash bash-doc bash-completion supervisor
 
-RUN     buildDeps="autoconf \
-                   automake \
-                   bash \
-                   binutils \
-                   bzip2 \
-                   cmake \
-                   curl \
-                   coreutils \
-                   diffutils \
-                   file \
-                   g++ \
-                   gcc \
-                   gperf \
-                   libtool \
-                   make \
-                   python \
-                   openssl-dev \
-                   tar \
-                   yasm \
-                   zlib-dev \
-                   expat-dev" && \
-        apk  add --no-cache --update ${buildDeps}
 ## opencore-amr https://sourceforge.net/projects/opencore-amr/
 RUN \
         DIR=/tmp/opencore-amr && \

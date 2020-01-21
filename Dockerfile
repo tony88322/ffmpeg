@@ -7,7 +7,8 @@
 FROM        alpine:3.8 AS base
 RUN     sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories
 RUN     apk  add --no-cache --update libgcc libstdc++ ca-certificates libcrypto1.0 libssl1.0 libgomp expat git
-
+RUN     apk  add bash bash-doc bash-completion
+RUN     apk add supervisor
 
 FROM        base AS build
 

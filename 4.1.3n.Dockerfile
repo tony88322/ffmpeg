@@ -16,7 +16,7 @@ FROM        base AS build
 
 WORKDIR     /tmp/workdir
 
-ENV         FFMPEG_VERSION=4.1.5 \
+ENV         FFMPEG_VERSION=4.1.3 \
             AOM_VERSION=v1.0.0 \
             FDKAAC_VERSION=0.1.5 \
             FONTCONFIG_VERSION=2.12.4 \
@@ -429,9 +429,10 @@ RUN \
         rm -rf ${DIR}
 
 ## ffmpeg https://ffmpeg.org/
+## https://ffmpeg.org/releases/
 RUN  \
         DIR=/tmp/ffmpeg && mkdir -p ${DIR} && cd ${DIR} && \
-        curl -sLO https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2 && \
+        curl -sLO https://github.com/tony88322/download/raw/master/file/ffmpeg-${FFMPEG_VERSION}.tar.bz2 && \
         tar -jx --strip-components=1 -f ffmpeg-${FFMPEG_VERSION}.tar.bz2
 
 
